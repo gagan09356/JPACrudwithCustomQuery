@@ -38,7 +38,7 @@ public class IteamController {
 	
 	@GetMapping("/custom")
 	public List<Iteam> getIteamByQuantity(){
-		return iteamServ.getByQant();
+		return iteamServ.getByQant(); 
 	}
 
 }
