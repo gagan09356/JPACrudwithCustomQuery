@@ -51,8 +51,9 @@ public class IteamServiceImpl implements IteamService{
 		//iteamRepo.
 	}
 	
-	public List<Iteam> getByQant(){
-		List<Iteam> item =iteamRepo.getByQant(100);
+	
+	public List getByQant(int id){
+		List item =iteamRepo.getByQant(id);
 		return item;
 	}
 

@@ -12,6 +12,6 @@ public interface IteamRepo extends JpaRepository<Iteam, Integer>{
 
 	@Query(nativeQuery = true,
 			value=
-			"Select * from Iteam where quantity = :quant")
-	List<Iteam> getByQant(@Param("quant") long qaunt );
+			"Select * from Iteam i, city c where i.id=:quant and c.id=i.id")
+	List getByQant(@Param("quant") long qaunt );
 }

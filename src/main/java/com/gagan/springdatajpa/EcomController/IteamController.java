@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gagan.springdatajpa.EcomModal.Iteam;
 import com.gagan.springdatajpa.EcomService.IteamServiceImpl;
+import com.gagan.springdatajpa.Exception.ResultNotFoundException;
 
 @RestController
 public class IteamController {
@@ -36,9 +39,19 @@ public class IteamController {
 		iteamServ.deleteIteam(1);
 	}
 	
-	@GetMapping("/custom")
-	public List<Iteam> getIteamByQuantity(){
-		return iteamServ.getByQant(); 
+	@GetMapping("/custom/{id}")
+	public List getIteamByQuantity(@PathVariable(required =false) int id) throws ResultNotFoundException{
+		
+	List iteam=	iteamServ.getByQant(id);
+		
+		if(!iteam.isEmpty()) {
+			System.out.println(iteam);
+			return iteam;
+			
+		}
+		else {
+			throw new ResultNotFoundException("No Result Found");
+		}
 	}
 
 }
